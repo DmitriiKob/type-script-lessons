@@ -63,58 +63,96 @@ const cherchil:Person = {
     }]
 }
 
-interface car{
+interface Car{
     model: string
     weight: number
-    yearOfRelease: number 
+    yearOfRelease: number
+    doors: door[]
+    wheel: wheel[]
+    panel: panel
+    transmission: transmission
 }
 
-interface panel extends car{
+interface Crossover extends Car{
+    CVType: 'off-highway vehicles' | 'light trucks' | 'pick up'
+}
+
+interface panel{
     type: string
     color: string
-    doorType: door[]
-    wheel: wheel[]
-    transmission: transmission[]
 }
 
-interface door extends car{
+interface door {
     doorColor: string
 }
 
-interface wheel extends car{
+interface wheel {
     radius: number
     brand: string
 }
 
-interface transmission extends car{
+interface transmission {
     country: string
     name: string
 }
 
-const tesla:panel = {
+const tesla:Crossover = {
     model: "x",
     weight: 1300,
     yearOfRelease: 2022 ,
-    type: "Tesla-Original",
-    color: "black",
-    doorType:[{
-        model: "x",
-        weight: 75,
-        yearOfRelease: 2022,
+    CVType: 'pick up',
+    panel: {
+        type: "r2d2",
+        color: 'brown'
+    },
+    doors:[{
         doorColor: "yellow"
     }],
     wheel:[{
-        model: "x",
-        weight: 75,
-        yearOfRelease: 2022,
         radius: 22,
         brand: "Tesla"
     }],
-    transmission:[{
-        model: "x",
-        weight: 75,
-        yearOfRelease: 2022,
+    transmission:{
         country:"USA",
         name:"Automatic Tesla Turbo Giper Super Transmission with one hair from Ilon's Mask head on top"
-    }]
+    }
 }
+
+
+// export const min = (list: number[]): number => {
+//     return Math.min.apply( Math, list );
+// };
+
+// export const max = (list: number[]): number => {
+//     return Math.max.apply( Math, list );
+// };
+
+// export function sumMix(x: any[]): number {
+//     return x.reduce((a, b) => a + Number(b), 0)
+//   }
+// function setTwiceOld(sonAge, FatherAge): number{
+//     for(let i = 1; i <= sonAge; i++){
+//         if((FatherAge + i) / (sonAge + i) === 2){
+//             return i
+//         }
+//     }
+// }
+
+ interface CssButton {
+   [property:string] :string
+ }
+ 
+ const cssButton: CssButton = {
+    width: '150px',
+    color: 'white'
+ }
+
+ function getSelectors (property:string, value:string): string
+ function getSelectors (): void
+ function getSelectors (property?: string, value?: string){
+    if(property && value){
+        return cssButton[property]
+    }
+ }
+
+ console.log(getSelectors())
